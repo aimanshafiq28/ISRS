@@ -105,12 +105,6 @@ button[type="submit"]:hover {
 button[type="submit"]:focus {
     outline: none;
 }
-.requirement {
-            color: red;
-        }
-        .requirement.valid {
-            color: green;
-        }
 
     </style>
 </head>
@@ -128,14 +122,37 @@ button[type="submit"]:focus {
         <div class="collapse navbar-collapse  w-auto  max-height-vh-100" id="sidenav-collapse-main">
             <ul class="navbar-nav">
             <li class="nav-item">
-                    <a class="nav-link text-white active" href="<?= base_url('LoginStudent') ?>" style="background-color: #FFDB58; color: black;">
+                    <a class="nav-link text-white active" href="<?= base_url('dashboardadmin') ?>" style="background-color: #FFDB58; color: black;">
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="nav-icon fas fa-user"></i>
                         </div>
-                        <span class="nav-link-text ms-1">Log Masuk</span>
+                        <span class="nav-link-text ms-1">Dashboard</span>
                     </a>
                 </li>
-                
+                <li class="nav-item">
+                    <a class="nav-link text-white " href="<?= base_url('WaktuAdmin') ?>">
+                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="nav-icon fas fa-building"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Waktu Masuk/Keluar</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white " href="<?= base_url('jadualadmin') ?>">
+                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="nav-icon fas fa-building"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Jadual Admin</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white " href="">
+                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="nav-icon fas fa-upload"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Notifikasi</span>
+                    </a>
+                </li>
 
 
             </ul>
@@ -149,7 +166,13 @@ button[type="submit"]:focus {
         <!-- Navbar -->
         <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" navbar-scroll="true">
             <div class="container-fluid py-1 px-3">
-                
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
+                        <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">SistemLI</a></li>
+                        <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Admin</li>
+                    </ol>
+                    <h6 class="font-weight-bolder mb-0">Jadual Giliran</h6>
+                </nav>
                 
             </div>
         </nav>
@@ -169,37 +192,43 @@ button[type="submit"]:focus {
 			border: 1px solid #ddd;
 			border-radius: 10px;
 			box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            
 		}
 	</style>
        <body>
-       <form action="<?= base_url('student_create') ?>" method="post" enctype="multipart/form-data">
+       <form action="<?= base_url('student/update/' . $student['ic_number']) ?>" method="post">
        <div class="container">
        
     <div class="block profile">
         <fieldset>
             <legend><h3>Maklumat Peribadi</h3></legend>
             <div class="field">
-                <div><label for="stu_name">Nama Pelajar*</label><input type="text" id="stu_name" name="stu_name" required></div>
-                </div>
+                <label for="stu_name">Nama Pelajar*</label>
+                <input type="text" id="stu_name" name="stu_name" value="<?= $student['stu_name'] ?>" required>
+            </div>
             <div class="field">
-                <div><label for="stu_matrik">Nombor Matrik*</label><input type="text" id="stu_matrik" name="stu_matrik" required></div>
-                </div>
+                <label for="stu_matrik">Nombor Matrik*</label>
+                <input type="text" id="stu_matrik" name="stu_matrik" value="<?= $student['stu_matrik'] ?>" required>
+            </div>
             <div class="field">
-                <div><label for="stu_dob">Tarikh Lahir*</label><input type="date" id="stu_dob" name="stu_dob" required></div>
-                </div>
+                <label for="stu_dob">Tarikh Lahir*</label>
+                <input type="date" id="stu_dob" name="stu_dob" value="<?= $student['stu_dob'] ?>" required>
+            </div>
             <div class="field">
-                <div><label for="stu_address">Alamat*</label><textarea id="stu_address" name="stu_address" required rows="9" cols="87"></textarea></div>
-                </div>
+                <label for="stu_address">Alamat*</label>
+                <textarea id="stu_address" name="stu_address" rows="9" cols="87" required><?= $student['stu_address'] ?></textarea>
+            </div>
             <div class="field">
-                <div><label for="stu_home_no">Nombor Telefon Rumah*</label><input type="text" id="stu_home_no" name="stu_home_no" required></div>
-                </div>
+                <label for="stu_home_no">Nombor Telefon Rumah*</label>
+                <input type="text" id="stu_home_no" name="stu_home_no" value="<?= $student['stu_home_no'] ?>" required>
+            </div>
             <div class="field">
-                <div><label for="stu_fon_no">Nombor Telefon Bimbit*</label><input type="text" id="stu_fon_no" name="stu_fon_no" required></div>
-                </div>
+                <label for="stu_fon_no">Nombor Telefon Bimbit*</label>
+                <input type="text" id="stu_fon_no" name="stu_fon_no" value="<?= $student['stu_fon_no'] ?>" required>
+            </div>
             <div class="field">
-                <div><label for="stu_email">Alamat Email*</label><input type="email" id="stu_email" name="stu_email" required></div>
-                </div>
+                <label for="stu_email">Alamat Email*</label>
+                <input type="text" id="stu_email" name="stu_email" value="<?= $student['stu_email'] ?>" required>
+            </div>
         </fieldset>
     </div>
 
@@ -207,23 +236,29 @@ button[type="submit"]:focus {
         <fieldset>
             <legend><h3>Maklumat Latihan Industri</h3></legend>
             <div class="field">
-                <div><label for="start_li">Tarikh Mula*</label><input type="date" id="start_li" name="start_li" required></div>
-                </div>
+                <label for="start_li">Tarikh Mula*</label>
+                <input type="date" id="start_li" name="start_li" value="<?= $student['start_li'] ?>" required>
+            </div>
             <div class="field">
-                <div><label for="end_li">Tarikh Tamat*</label><input type="date" id="end_li" name="end_li" required></div>
-                </div>
+                <label for="end_li">Tarikh Tamat*</label>
+                <input type="date" id="end_li" name="end_li" value="<?= $student['end_li'] ?>" required>
+            </div>
             <div class="field">
-                <div><label for="stu_course">Jangkamasa Latihan*</label><input type="text" id="stu_course" name="stu_course" required></div>
-                </div>
+                <label for="stu_course">Jangkamasa Latihan*</label>
+                <input type="text" id="stu_course" name="stu_course" value="<?= $student['stu_course'] ?>" required>
+            </div>
             <div class="field">
-                <div><label for="ipt_name">Nama IPTA/IPTS*</label><input type="text" id="ipt_name" name="ipt_name" required></div>
-                </div>
+                <label for="ipt_name">Nama IPTA/IPTS*</label>
+                <input type="text" id="ipt_name" name="ipt_name" value="<?= $student['ipt_name'] ?>" required>
+            </div>
             <div class="field">
-                <div><label for="ipt_add">Alamat IPTA/IPTS*</label><input type="text" id="ipt_add" name="ipt_add" required></div>
-                </div>
+                <label for="ipt_add">Alamat IPTA/IPTS*</label>
+                <input type="text" id="ipt_add" name="ipt_add" value="<?= $student['ipt_add'] ?>" required>
+            </div>
             <div class="field">
-                <div><label for="ipt_no">Nombor Telefon IPTA/IPTS*</label><input type="text" id="ipt_no" name="ipt_no" required></div>
-                </div>
+                <label for="ipt_no">Nombor Telefon IPTA/IPTS*</label>
+                <input type="text" id="ipt_no" name="ipt_no" value="<?= $student['ipt_no'] ?>" required>
+            </div>
         </fieldset>
     </div>
 
@@ -231,11 +266,13 @@ button[type="submit"]:focus {
         <fieldset>
             <legend><h3>Kontak Kecemasan</h3></legend>
             <div class="field">
-                <div><label for="emergency_contact_name">Nama*</label><input type="text" id="emergency_contact_name" name="emergency_contact_name" required></div>
-                </div>
+                <label for="emergency_contact_name">Nama*</label>
+                <input type="text" id="emergency_contact_name" name="emergency_contact_name" value="<?= $student['emergency_contact_name'] ?>" required>
+            </div>
             <div class="field">
-                <div><label for="emergency_contact_no">Nombor Telefon Bimbit*</label><input type="text" id="emergency_contact_no" name="emergency_contact_no" required></div>
-                </div>
+                <label for="emergency_contact_no">Nombor Telefon Bimbit*</label>
+                <input type="text" id="emergency_contact_no" name="emergency_contact_no" value="<?= $student['emergency_contact_no'] ?>" required>
+            </div>
             <div class="field">
                 <label for="relationship">Hubungan*</label>
                 <select id="relationship" name="relay_contact" required>
@@ -254,13 +291,14 @@ button[type="submit"]:focus {
         <fieldset>
             <legend><h3>Maklumat Penyelia</h3></legend>
             <div class="field">
-                <div><label for="sv_ipt">Nama Penyelia IPTA/IPTS*</label><input type="text" id="sv_ipt" name="sv_ipt" required></div>
-                </div>
+                <label for="sv_ipt">Nama Penyelia IPTA/IPTS*</label>
+                <input type="text" id="sv_ipt" name="sv_ipt" value="<?= $student['sv_ipt'] ?>" required>
+            </div>
             <div class="field">
-                <div><label for="sv_fon_no">Nombor Telefon Bimbit*</label><input type="text" id="sv_fon_no" name="sv_fon_no" required></div>
-                </div>
+                <label for="sv_fon_no">Nombor Telefon Bimbit*</label>
+                <input type="text" id="sv_fon_no" name="sv_fon_no" value="<?= $student['sv_fon_no'] ?>" required>
+            </div>
             <div class="field">
-            <label for="sv_fon_no">Nama Penyelia*</label>
             <div class="input-group input-group-outline mb-3">
                         <select name="sv_ppkt" id="sv_ppkt" class="form-control">
                         <option value="">Pilih Penyelia</option>
@@ -277,35 +315,16 @@ button[type="submit"]:focus {
     </div>
 
     <div class="block">
-    <legend><h3>Maklumat Log Masuk</h3></legend>
-    <div class="field">
-            <label for="ic_number">Nombor Kad Pengenalan*</label>
-            <input type="text" id="ic_number" name="ic_number" value="<?= old('ic_number') ?>" required>
-        </div>
-        <div class="field">
-            <label for="stu_password">Kata Laluan*</label>
-            <input type="password" id="stu_password" name="stu_password" required>
-            <span class="toggle-password" id="toggle-password">&#128065;</span>
-        </div>
-        <div id="password-requirements">
-            <ul>
-                <li class="requirement" id="length-requirement">At least 8 characters</li>
-                <li class="requirement" id="uppercase-requirement">At least one uppercase letter</li>
-                <li class="requirement" id="number-requirement">At least one number</li>
-                <li class="requirement" id="symbol-requirement">At least one symbol</li>
-            </ul>
-        </div>
-        <?php if (isset($validation) && $validation->getErrors()): ?>
-        <div class="alert alert-danger">
-            <ul>
-                <?php foreach ($validation->getErrors() as $error): ?>
-                    <li><?= esc($error) ?></li>
-                <?php endforeach ?>
-            </ul>
-        </div>
-        <?php endif ?>
-    </div>
-                
+                <fieldset>
+                    <legend><h3>Status</h3></legend>
+                    <div class="field">
+                        <label for="stu_status">Status*</label>
+                        <select id="stu_status" name="stu_status" required>
+                            <option value="aktif">Aktif</option>
+                            <option value="tidak aktif">Tidak Aktif</option>
+                        </select>
+                    </div>
+                </fieldset>
             </div>
                             </div>
         <button type="submit">Submit</button>
@@ -333,76 +352,7 @@ button[type="submit"]:focus {
     <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="../assets/dashboardassets/js/material-dashboard.min.js?v=3.0.0"></script>
 
-   <script>
-        document.getElementById('stu_password').addEventListener('input', function() {
-            const password = this.value;
-            const lengthRequirement = document.getElementById('length-requirement');
-            const uppercaseRequirement = document.getElementById('uppercase-requirement');
-            const numberRequirement = document.getElementById('number-requirement');
-            const symbolRequirement = document.getElementById('symbol-requirement');
-            
-            // Check length
-            if (password.length >= 8) {
-                lengthRequirement.classList.add('valid');
-            } else {
-                lengthRequirement.classList.remove('valid');
-            }
-            
-            // Check for uppercase letter
-            if (/[A-Z]/.test(password)) {
-                uppercaseRequirement.classList.add('valid');
-            } else {
-                uppercaseRequirement.classList.remove('valid');
-            }
-            
-            // Check for number
-            if (/\d/.test(password)) {
-                numberRequirement.classList.add('valid');
-            } else {
-                numberRequirement.classList.remove('valid');
-            }
-
-            //check symbol
-            if (/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
-            symbolRequirement.classList.add('valid');
-        } else {
-            symbolRequirement.classList.remove('valid');
-        }
-        });
-
-        document.querySelector('form').addEventListener('submit', function(event) {
-        const lengthRequirement = document.getElementById('length-requirement').classList.contains('valid');
-        const uppercaseRequirement = document.getElementById('uppercase-requirement').classList.contains('valid');
-        const numberRequirement = document.getElementById('number-requirement').classList.contains('valid');
-        const symbolRequirement = document.getElementById('symbol-requirement').classList.contains('valid');
-
-        
-        if (!lengthRequirement || !uppercaseRequirement || !numberRequirement) {
-            event.preventDefault();
-            alert('Please ensure the password meets all the requirements.');
-        }
-    });
-
-    document.getElementById('toggle-password').addEventListener('click', function() {
-        const passwordField = document.getElementById('stu_password');
-        const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
-        passwordField.setAttribute('type', type);
-        this.textContent = type === 'password' ? '👁️' : '🔒';
-    });
-    </script>
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-<script>
-    function onSubmit(event) {
-        event.preventDefault();
-        const response = grecaptcha.getResponse();
-        if (response.length === 0) {
-            alert("Please complete the CAPTCHA!");
-            return false;
-        } else {
-            document.getElementById("myForm").submit();
-        }
-    }
-</script>
+   
 </body>
 
 </html>

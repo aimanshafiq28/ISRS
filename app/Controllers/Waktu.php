@@ -7,9 +7,14 @@ class Waktu extends BaseController
 {
     public function index()
     {
-        $attendanceModel = new AttendanceModel();
-        $data['attendanceData'] = $attendanceModel->findAll();
+        $session = session();
+        $ic_number = $session->get('ic_number');
 
-        return view('waktu', $data);
+        // Load model
+        $attendanceModel = new AttendanceModel();
+        $attendanceData = $attendanceModel->getAttendanceByICNumber($ic_number);
+
+        // Pass data to view
+        return view('waktu', ['attendanceData' => $attendanceData]);
     }
 }

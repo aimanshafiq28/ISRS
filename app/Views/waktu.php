@@ -57,7 +57,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white " href="./pages/tables.html">
+                    <a class="nav-link text-white " >
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="nav-icon fas fa-table"></i>
                         </div>
@@ -73,7 +73,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white " href="<?= base_url('ScheduleStudent') ?>">
+                    <a class="nav-link text-white " >
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="nav-icon fas fa-building"></i>
                         </div>
@@ -81,11 +81,19 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white " href="./pages/rtl.html">
+                    <a class="nav-link text-white " href="<?= base_url('leaveliststudent'); ?>">
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="nav-icon fas fa-upload"></i>
                         </div>
                         <span class="nav-link-text ms-1">Permohonan Cuti</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white " href="<?= base_url('logout'); ?>">
+                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="nav-icon fas fa-upload"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Log Keluar</span>
                     </a>
                 </li>
 
@@ -134,10 +142,10 @@
                                     <?php     
                                     foreach ($attendanceData as $row) : ?>
     <tr>
-        <td><?= $row['date']; ?></td>
-        <td><?= $row['clock_in']; ?></td>
-        <td><?= $row['clock_out']; ?></td>
-    </tr>
+                    <td><?= htmlspecialchars($row['date']); ?></td>
+                    <td><?= htmlspecialchars($row['clock_in']); ?></td>
+                    <td><?= htmlspecialchars($row['clock_out']); ?></td>
+                </tr>
 <?php endforeach ?>
     </tbody>
                                 </table>

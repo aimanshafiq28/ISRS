@@ -38,8 +38,12 @@ $routes->get('Waktu', 'Waktu::index');
 //Admin Dashboard
 $routes->get('dashboardadmin', 'DashboardAdmin::index');
 
+//Alumni
+$routes->get('alumni', 'Alumni::index');
+
 //Waktu Clockin/ClockOut Admin
 $routes->get('WaktuAdmin', 'WaktuAdmin::index');
+$routes->get('search', 'WaktuAdmin::search');
 
 $routes->get('student', 'StudentsController::index');
 
@@ -57,9 +61,46 @@ $routes->get('Laporan', 'Laporan::index');
 //cuti
 $routes->get('cutipelajar', 'CutiStudent::index');
 
-// Login routes Admin
-$routes->get('loginadmin', 'LoginAdmin::index');
+
+//asdmin log in
+$routes->get('loginadmin', 'AdminAuthController::login');
 $routes->post('admin-login', 'AdminAuthController::loginAuth');
+
+
+// Login routes Admin
+// $routes->get('studentprofile', 'StudentProfile::index');
+
+//studentprofile
+
+$routes->get('student/edit/(:num)', 'StudentsController::edit/$1');
+$routes->post('student/update/(:num)', 'StudentsController::update/$1');
+$routes->get('studentprofile/(:any)', 'StudentsController::profile/$1');
+
+// routes.php
+
+$routes->get('studentprofile', 'AdviserController::create');
+
+//profile search
+$routes->get('search', 'DashboardAdmin::search');
+
+//maklumat penyelia
+$routes->get('maklumatpenyelia', 'MaklumatPenyelia::index');
+
+//pelajarpenyelia
+$routes->get('pelajarpenyelia', 'PelajarPenyelia::index');
+$routes->get('tambahpenyelia', 'PelajarPenyelia::tambah');
+$routes->post('adviser_create', 'AdviserController::store');
+
+//leave
+$routes->get('leave', 'LeaveController::index');
+$routes->post('leave/submit', 'LeaveController::submit');
+$routes->get('leave/success', 'LeaveController::success');
+$routes->get('leaveliststudent', 'LeaveListStudent::index');
+
+
+//test
+$routes->get('testregister', 'Test::testregister');
+
 
 
 

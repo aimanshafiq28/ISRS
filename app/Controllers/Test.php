@@ -8,4 +8,10 @@ class Test extends BaseController
     {
         return view('test_db');
     }
+
+    public function testregister(): string
+    {
+        return view('testregister');
+    }
+
 }

@@ -13,8 +13,6 @@ class AdminAuthController extends Controller
         echo view('login');
     }
 
-    
-
     public function logout()
     {
         $session = session();
@@ -24,35 +22,51 @@ class AdminAuthController extends Controller
 
     public function loginAuth()
     {
-        $session = session(); // Assuming session helper is loaded
+        $session = session();
 
         // Retrieve input data
         $ad_username = $this->request->getPost('ad_username');
         $ad_password = $this->request->getPost('ad_password');
 
-        // Load the StudentModel
+        // Debugging: Log input data
+        log_message('debug', 'Attempting login with Username: ' . $ad_username);
+
+        // Load the AdminModel
         $model = new AdminModel();
 
         // Verify credentials
-        if ($model->verifyPassword($ad_username, $ad_password)) {
-            // Successful login
-            $admins = $model->getStudentByIC($ad_username);
+        $admin = $model->getAdminByUsername($ad_username);
 
-            // Set session data
-            $sessionData = [
-                'admin_id' => $admins['admin_id'],
-                'ad_username' => $admins['ad_username'],
-                'ad_password' => $admins['ad_password']
-            ];
+        if ($admin) {
+            // Debugging: Log retrieved admin data
+            log_message('debug', 'Admin found: ' . json_encode($admin));
 
-            $session->set($sessionData);
+            if ($model->verifyPassword($ad_username, $ad_password)) {
+                // Successful login
+                // Set session data
+                $sessionData = [
+                    'admin_id' => $admin['admin_id'],
+                    'ad_username' => $admin['ad_username'],
+                    'is_logged_in' => true
+                ];
 
-            // Redirect to dashboard or another page
-            return redirect()->to(base_url('dashboardadmin'));
+                $session->set($sessionData);
+
+                // Redirect to dashboard or another page
+                log_message('debug', 'Login successful for Username: ' . $ad_username);
+                return redirect()->to(base_url('dashboardadmin'));
+            } else {
+                // Debugging: Password mismatch
+                log_message('debug', 'Password mismatch for Username: ' . $ad_username);
+            }
         } else {
-            // Failed login
-            // Redirect back to login page with error message
-            return redirect()->to(base_url('loginadmin'))->with('error', 'Invalid IC number or password.');
+            // Debugging: Admin not found
+            log_message('debug', 'No admin found with Username: ' . $ad_username);
         }
+
+        // Failed login
+        // Redirect back to login page with error message
+        $session->setFlashdata('error', 'Invalid username or password.');
+        return redirect()->to(base_url('loginadmin'));
     }
 }

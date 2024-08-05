@@ -260,7 +260,7 @@ button[type="submit"]:focus {
                 <div><label for="sv_fon_no">Nombor Telefon Bimbit*</label><input type="text" id="sv_fon_no" name="sv_fon_no" required></div>
                 </div>
             <div class="field">
-            <label for="sv_fon_no">Nama Penyelia*</label>
+           
             <div class="input-group input-group-outline mb-3">
                         <select name="sv_ppkt" id="sv_ppkt" class="form-control">
                         <option value="">Pilih Penyelia</option>
@@ -277,7 +277,7 @@ button[type="submit"]:focus {
     </div>
 
     <div class="block">
-    <legend><h3>Maklumat Log Masuk</h3></legend>
+
     <div class="field">
             <label for="ic_number">Nombor Kad Pengenalan*</label>
             <input type="text" id="ic_number" name="ic_number" value="<?= old('ic_number') ?>" required>

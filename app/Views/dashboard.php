@@ -61,7 +61,7 @@
 
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white " href="<?= base_url('Laporan') ?>">
+                    <a class="nav-link text-white " >
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="nav-icon fas fa-table"></i>
                         </div>
@@ -77,7 +77,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white " href="<?= base_url('ScheduleStudent') ?>">
+                    <a class="nav-link text-white " >
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="nav-icon fas fa-building"></i>
                         </div>
@@ -85,7 +85,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white " href="<?= base_url('cutipelajar') ?>">
+                    <a class="nav-link text-white " href="<?= base_url('leaveliststudent') ?>">
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="nav-icon fas fa-upload"></i>
                         </div>

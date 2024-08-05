@@ -5,6 +5,8 @@ namespace App\Controllers;
 use App\Models\AttendanceModel;
 use Dompdf\Dompdf;
 
+
+
 class WaktuAdmin extends BaseController
 {
     public function index()
@@ -47,4 +49,26 @@ class WaktuAdmin extends BaseController
         $dompdf->render();
         $dompdf->stream("attendance_$ic_number.pdf", ["Attachment" => 1]);
     }
+    public function search()
+    {
+        // Load necessary helpers (if not already loaded in autoload)
+        helper(['url', 'form']);
+
+        // Get search input from query string
+        $search = $this->request->getGet('search');
+
+        // Load your model
+        $attendanceModel = new \App\Models\AttendanceModel(); // Adjust with your actual model path and name
+
+        // Call a method in your model to fetch filtered data
+        $attendanceDataAdmin = $attendanceModel->searchICNumber($search);
+
+        // Prepare data to pass to the view
+        $data['attendanceDataAdmin'] = $attendanceDataAdmin;
+
+        // Load the view with the filtered data
+        return view('adminwaktu', $data);
+    }
+    
+
 }

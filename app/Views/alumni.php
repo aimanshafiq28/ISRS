@@ -121,8 +121,9 @@
     </div>
     <div class="card">  
     <div class="card-header pb-0 px-3 d-flex justify-content-between align-items-center">
-    <h6 class="mb-0">Pelajar Latihan Industri</h6>
-            <button type="button" class="btn btn-primary" onclick="window.location.href='<?= base_url('alumni') ?>'">Pelajar Tidak Aktif</button>
+    <h6 class="mb-0">Pelajar Latihan Industri Yang Telah Tamat Latihan Industri</h6>
+    <button type="button" class="btn btn-primary" onclick="window.location.href='<?= base_url('dashboardadmin') ?>'">Pelajar Aktif</button>
+
         </div>
         <div class="card-body pt-4 p-3">
         <ul class="list-group">

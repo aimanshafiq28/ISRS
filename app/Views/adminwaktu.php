@@ -76,11 +76,11 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white " href="./pages/rtl.html">
+                    <a class="nav-link text-white " href="<?= base_url('maklumatpenyelia') ?>">
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="nav-icon fas fa-upload"></i>
                         </div>
-                        <span class="nav-link-text ms-1">Notifikasi</span>
+                        <span class="nav-link-text ms-1">Maklumat Penyelia</span>
                     </a>
                 </li>
 
@@ -107,7 +107,18 @@
             </div>
         </nav>
         <!-- End Navbar -->
-         
+        <div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-12">
+            <form action="<?php echo base_url('search'); ?>" method="get">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" name="search" placeholder="Search IC Number" aria-label="Search IC Number" aria-describedby="basic-addon2">
+                    <button class="btn btn-primary" type="submit">Search</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
         <div class="container-fluid py-4">
             <div class="row">
                 <div class="col-12">
@@ -119,10 +130,11 @@
                         </div>
                         <div class="card-body px-0 pb-2">
                             <div class="table-responsive p-0">
-                                <table class="table align-items-center mb-0">
-                                <thead>
+                            <table class="table align-items-center mb-0">
+    <thead>
         <tr>
             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">IC Number</th>
+            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama Pelajar</th>
             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Actions</th>
         </tr>
     </thead>
@@ -130,13 +142,14 @@
         <?php foreach ($attendanceDataAdmin as $row) : ?>
             <tr>
                 <td><?= $row['ic_number']; ?></td>
+                <td><?= $row['stu_name']; ?></td>
                 <td>
-                <a href="<?= base_url('setICNumberSession/' . $row['ic_number']); ?>" class="btn btn-primary">Generate PDF</a>
+                    <a href="<?= base_url('setICNumberSession/' . $row['ic_number']); ?>" class="btn btn-primary">Generate PDF</a>
                 </td>
             </tr>
         <?php endforeach ?>
     </tbody>
-                                </table>
+</table>
                             </div>
                         </div>
                     </div>

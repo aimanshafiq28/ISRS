@@ -48,16 +48,13 @@
         <hr class="horizontal light mt-0 mb-2">
         <div class="collapse navbar-collapse  w-auto  max-height-vh-100" id="sidenav-collapse-main">
             <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link text-white active" href="<?= base_url('dashboardadmin') ?>" style="background-color: #FFDB58; color: black;">
+            <li class="nav-item">
+                    <a class="nav-link text-white " href="<?= base_url('dashboardadmin') ?>">
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="nav-icon fas fa-user"></i>
+                            <i class="nav-icon fas fa-building"></i>
                         </div>
                         <span class="nav-link-text ms-1">Permohonan Pelajar</span>
                     </a>
-
-
-
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white " href="<?= base_url('WaktuAdmin') ?>">
@@ -75,14 +72,12 @@
                         <span class="nav-link-text ms-1">Jadual Giliran</span>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white " href="<?= base_url('maklumatpenyelia') ?>">
+                <a class="nav-link text-white active" href="<?= base_url('maklumatpenyelia') ?>" style="background-color: #FFDB58; color: black;">
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="nav-icon fas fa-upload"></i>
+                            <i class="nav-icon fas fa-user"></i>
                         </div>
                         <span class="nav-link-text ms-1">Maklumat Penyelia</span>
                     </a>
-                </li>
 
 
             </ul>
@@ -102,7 +97,7 @@
                         <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">SistemLI</a></li>
                         <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Admin</li>
                     </ol>
-                    <h6 class="font-weight-bolder mb-0">Permohonan  Pelajar</h6>
+                    <h6 class="font-weight-bolder mb-0">Maklumat Penyelia</h6>
                 </nav>
                
             </div>
@@ -121,23 +116,20 @@
     </div>
     <div class="card">  
     <div class="card-header pb-0 px-3 d-flex justify-content-between align-items-center">
-    <h6 class="mb-0">Pelajar Latihan Industri</h6>
-            <button type="button" class="btn btn-primary" onclick="window.location.href='<?= base_url('alumni') ?>'">Pelajar Tidak Aktif</button>
+    <h6 class="mb-0">Maklumat Penyelia</h6>
+            <button type="button" class="btn btn-primary" onclick="window.location.href='<?= base_url('tambahpenyelia') ?>'">Tambah Penyelia</button>
         </div>
         <div class="card-body pt-4 p-3">
         <ul class="list-group">
-    <?php if (isset($students) && !empty($students)): ?>
-        <?php foreach ($students as $student): ?>
+    <?php if (isset($advisers) && !empty($advisers)): ?>
+        <?php foreach ($advisers as $adviser): ?>
             <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
                 <div class="d-flex flex-column">
-                    <h6 class="mb-3 text-sm">Nama :  <?= htmlspecialchars($student['stu_name']); ?></h6>
-                    <h6 class="mb-3 text-sm">Nombor Kad Pengenalan :  <?= htmlspecialchars($student['ic_number']); ?></h6>
-                    <h6 class="mb-3 text-sm">Tarikh Mula Latihan Industri :  <?= htmlspecialchars($student['start_li']); ?></h6>
-                    <h6 class="mb-3 text-sm">Tarikh Akhir Latihan Industri :  <?= htmlspecialchars($student['end_li']); ?></h6>
-
+                    <h6 class="mb-3 text-sm">Nama :  <?= htmlspecialchars($adviser['staff_name']); ?></h6>
+                    <h6 class="mb-3 text-sm">Email :  <?= htmlspecialchars($adviser['staff_email']); ?></h6>
                 </div>
                 <div class="ms-auto text-end">
-                    <a class="btn btn-link text-danger text-gradient px-3 mb-0"href="<?= base_url('studentprofile/' . $student['ic_number']); ?>"><i class="material-icons text-sm me-2" >delete</i>Papar</a>
+                    <a class="btn btn-link text-danger text-gradient px-3 mb-0"href="<?= base_url('pelajarpenyelia'); ?>"><i class="material-icons text-sm me-2" >delete</i>Papar</a>
                     
                 </div>
             </li>

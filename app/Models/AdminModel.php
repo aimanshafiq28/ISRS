@@ -8,35 +8,21 @@ class AdminModel extends Model
 {
     protected $table = 'admin';
     protected $primaryKey = 'admin_id';
-    protected $allowedFields = [
-        'admin_id', 
-        'ad_username', 
-        'ad_password'
-        
-    ];
+    protected $allowedFields = ['ad_username', 'ad_password'];
 
-    public function getStudentByIC($ad_username)
+    public function getAdminByUsername($ad_username)
     {
         return $this->where('ad_username', $ad_username)->first();
     }
-   
-    /**
-     * Verifies student's password.
-     *
-     * @param string $ic_number
-     * @param string $stu_password
-     * @return bool
-     */
+
     public function verifyPassword($ad_username, $ad_password)
     {
-        $admins = $this->getStudentByIC($ad_username);
+        $admin = $this->getAdminByUsername($ad_username);
 
-        if (!$admins) {
+        if (!$admin) {
             return false;
         }
 
-        return password_verify($ad_password, $admins['ad_password']);
+        return $ad_password === $admin['ad_password'];
     }
-
-   
 }

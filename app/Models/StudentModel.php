@@ -30,7 +30,8 @@ class StudentModel extends Model
         'sv_ppkt', 
         'emergency_contact_name', 
         'emergency_contact_no', 
-        'relay_contact'
+        'relay_contact',
+        'stu_status'
     ];
 
     /**
@@ -72,5 +73,41 @@ class StudentModel extends Model
     public function get_students()
 {
     return $this->findAll();
+}
+
+public function searchICNumber($search)
+{
+    $builder = $this->db->table('student');
+    $builder->select(
+        'ic_number', 
+        'stu_name', 
+        'stu_email', 
+        'stu_password', 
+        'stu_matrik', 
+        'stu_dob', 
+        'stu_address', 
+        'stu_fon_no', 
+        'stu_home_no', 
+        'stu_pic', 
+        'start_li', 
+        'end_li', 
+        'stu_course', 
+        'ipt_name', 
+        'ipt_add', 
+        'ipt_no', 
+        'sv_ipt', 
+        'sv_fon_no', 
+        'sv_ppkt', 
+        'emergency_contact_name', 
+        'emergency_contact_no', 
+        'relay_contact',
+        'stu_status'
+    );
+   
+
+    $query = $builder->get();
+    $results = $query->getResultArray();
+
+    return $results;
 }
 }

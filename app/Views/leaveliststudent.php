@@ -35,6 +35,49 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
     <!-- CSS Files -->
     <link id="pagestyle" href="assets/dashboardassets/css/material-dashboard.css?v=3.0.0" rel="stylesheet" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css">
+
+    <style>
+        /* Custom styles for the table and buttons */
+        .card-header {
+            background: linear-gradient(90deg, rgba(0,123,255,1) 0%, rgba(0,123,255,0.8) 100%);
+            color: white;
+        }
+        .table thead th {
+            background-color: #f8f9fa;
+            color: #495057;
+        }
+        .status-button {
+            display: inline-block;
+            padding: 0.55em 0.9em;
+            font-size: 0.75em;
+            font-weight: 700;
+            line-height: 1;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: baseline;
+            border-radius: 0.45rem; 
+            border: 2px solid; /* Border style */
+            color: white; /* Text color */
+        }
+        .status-diluluskan {
+            background-color: #198754; /* Green background */
+            border-color: #198754; /* Green border */
+        }
+        .status-tidak-diluluskan {
+            background-color: #dc3545; /* Red background */
+            border-color: #dc3545; /* Red border */
+        }
+        .status-dalam-proses {
+            background-color: #6c757d; /* Grey background */
+            border-color: #6c757d; /* Grey border */
+        }
+
+        .btn-right {
+            display: flex;
+            justify-content: flex-end;
+        }
+    </style>
 </head>
 
 <body class="g-sidenav-show  bg-gray-200">
@@ -58,7 +101,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white " href="<?= base_url('Laporan') ?>">
+                    <a class="nav-link text-white " >
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="nav-icon fas fa-table"></i>
                         </div>
@@ -74,7 +117,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white " href="<?= base_url('ScheduleStudent') ?>">
+                    <a class="nav-link text-white " >
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="nav-icon fas fa-building"></i>
                         </div>
@@ -122,96 +165,64 @@
             </div>
         </nav>
         <!-- End Navbar -->
-        <main class="container">
-    <div class="card">
-        <div class="card-header pb-0 px-3">
-            <h6 class="mb-0">Pelajar Latihan Industri</h6>
-        </div>
-        <div class="card-body pt-4 p-3">
-        <i class="bi bi-person-fill display-1 text-primary" style="font-size: 10rem"></i>
-        <h1 class="display-1 h1">Permohonan Cuti Pelajar</h1>
-      </header>
-      <!-- Form -->
-      <form id="LeaveRequestForm" action="<?= base_url('leave/submit') ?>" method="post">
-        <!-- Name -->
-        <div class="row mb-3">
-  <div class="col-6">
-    <label class="form-label">Nama Pelajar</label>
-    <input type="text" class="form-control" value="<?= session()->get('stu_name'); ?>" id="stu_name" required />
-  </div>
-  <div class="col-6">
-    <label class="form-label">Nama Institut Pengajian</label>
-    <input type="text" class="form-control" id="EmployeeID" value="<?= session()->get('ipt_name'); ?>" required />
-  </div>
-</div>
-   
+       
 
-        
-<div class="row mb-3">
-  <div class="col-6">
-    <label class="form-label">Alamat Semasa Bercuti</label>
-    <input type="text" class="form-control" id="leave_add" required />
-  </div>
-  <div class="col-6">
-    <label class="form-label">Nombor Telefon</label>
-    <input type="text" class="form-control" id="stu_fon_no" value="<?= session()->get('stu_fon_no'); ?>"required />
-  </div>
-</div>
-        <!-- Tarikh Mula Cuti and Tarikh Akhir Cuti -->
-    <div class="row mb-3">
-        <div class="col">
-            <label class="form-label">Tarikh Mula Cuti</label>
-            <input type="date" class="form-control" id="start_date" required />
-        </div>
-        <div class="col">
-            <label class="form-label">Tarikh Akhir Cuti</label>
-            <input type="date" class="form-control" id="end_date" required />
-        </div>
-    </div>
-        <div class="row mb-3">
-          <div class="col">
-            <label class="form-label">Alasan</label>
-            <input type="text" class="form-control" id="reason" placeholder="Alasan" required />
-          </div>
-    </div>
-          <div id="reasonsSection">
-            <div class="row mb-3">
-                <div class="col">
-                    <label class="form-label">Alasan Khas</label>
-                    <input type="text" class="form-control" id="special_reason" name="Reasons" placeholder="Alasan boleh dimasukkan sekiranya permohonan kurang dari tiga(3) hari" required disabled />
+        <div class="container-fluid py-4">
+        <div class="btn-right mb-3">
+                                <button type="button" class="btn btn-primary" onclick="window.location.href='<?= base_url('cutipelajar') ?>'">Permohonan Baru</button>
+                            </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card my-4">
+                <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                    <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                        <h6 class="text-white text-capitalize ps-3">Permohonan Cuti Pelajar</h6>
+                    </div>
+                </div>
+                <div class="card-body px-0 pb-2">
+                    <div class="table-responsive p-0">
+                        <table class="table align-items-center mb-0">
+                            <thead>
+                                <tr>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No Kad Pengenalan</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tarikh Permohonan</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status Permohonan</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach($studentleaves as $leave): ?>
+                                <tr>
+                                    <td class="text-xs font-weight-bold"><?= esc($leave['ic_number']) ?></td>
+                                    <td class="text-xs font-weight-bold"><?= esc($leave['apply_date']) ?></td>
+                                    <td class="text-xs font-weight-bold">
+                                        <?php 
+                                            $statusClass = '';
+                                            $statusText = '';
+
+                                            if ($leave['leave_status'] == 'diluluskan') {
+                                                $statusClass = 'status-diluluskan';
+                                                $statusText = 'Diluluskan';
+                                            } elseif ($leave['leave_status'] == 'tidak diluluskan') {
+                                                $statusClass = 'status-tidak-diluluskan';
+                                                $statusText = 'Tidak Diluluskan';
+                                            } else {
+                                                $statusClass = 'status-dalam-proses';
+                                                $statusText = 'Dalam Proses';
+                                            }
+                                        ?>
+                                        
+                                        <span class="status-button <?= $statusClass ?>"><?= esc($statusText) ?></span>                                    </td>
+                                </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-            <div>
-    <div class="row mb-3">
-        <label class="form-label">Tarikh Permohonan</label>
-        <div class="col">
-            <input type="date" class="form-control" id="apply_date" value="<?= date('Y-m-d'); ?>" readonly required />
         </div>
     </div>
 </div>
- <!-- Rules Checkbox -->
- <div class="row mb-3">
-                            <div class="col">
-                                <input type="checkbox" id="rulesCheckbox" onclick="toggleSubmitButton()">
-                                <label class="form-label" for="rulesCheckbox">Permohonan mesti dihantar tiga(3) hari sebelum memulakan cuti anda.</label>
-                            </div>
-                            
-                        </div>
-        </div>
-
-        <div class="row mb-3">
-                            
-                            <div class="col">
-                                <input type="checkbox" id="rulesCheckbox" onclick="toggleSubmitButton()">
-                                <label class="form-label" for="rulesCheckbox">Tindakan anda menghantar permohonan kurang dari tiga(3) hari akan ditolak oleh Penyelia, tanpa alasan yang kukuh.</label>
-                            </div>
-                        </div>
-        </div>
-        <button type="submit" id="submitButton" class="btn btn-primary w-100 shadow-sm" disabled>Submit</button>
-
-      </form>
-    </section>
-  </div>
+    </main>
 
     
     <!--   Core JS Files   -->

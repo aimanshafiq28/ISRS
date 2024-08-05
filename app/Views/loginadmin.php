@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zxx">
+<html lang="en">
 
 <head>
     <!-- Google Tag Manager -->
@@ -14,23 +14,20 @@
                 j = d.createElement(s),
                 dl = l != 'dataLayer' ? '&l=' + l : '';
             j.async = true;
-            j.src =
-                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
             f.parentNode.insertBefore(j, f);
         })(window, document, 'script', 'dataLayer', 'GTM-TAGCODE');
-        
     </script>
     <!-- End Google Tag Manager -->
+    
     <title>Logee - Login and Register HTML5 Template</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
+    
     <!-- External CSS libraries -->
     <link type="text/css" rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link type="text/css" rel="stylesheet" href="assets/fonts/font-awesome/css/font-awesome.min.css">
     <link type="text/css" rel="stylesheet" href="assets/fonts/flaticon/font/flaticon.css">
-
-    <!-- Favicon icon -->
-    <!-- <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon"> -->
 
     <!-- Google fonts -->
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800%7CPoppins:400,500,700,800,900%7CRoboto:100,300,400,400i,500,700">
@@ -43,12 +40,14 @@
 
 <body id="top">
     <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TAGCODE" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TAGCODE" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
     <!-- End Google Tag Manager (noscript) -->
+    
     <div class="page_loader"></div>
 
-    <!-- Login 7 start -->
-
+    <!-- Login start -->
     <div class="login-8">
         <div class="container">
             <div class="row login-box">
@@ -59,12 +58,6 @@
                                 <!-- <img src="assets/img/logos/ppkt1.png" alt="logo" class="h-20 inline logo-border"> -->
                             </a>
                         </div>
-                        <div class="btn-section clearfix">
-
-                            <div class="clearfix"></div>
-
-                        </div>
-
                     </div>
                 </div>
                 <div class="col-lg-7 col-md-12 bg-color-16 align-self-center">
@@ -83,15 +76,14 @@
                                     </div>
                                 <?php endif; ?>
                                 <div class="form-group form-box">
-                                <input type="text" id="ad_username" name="ad_username" value="<?= old('ad_username') ?>"><br>
-                                <i class="flaticon-mail-2"></i>
+                                    <input type="text" id="ad_username" name="ad_username" class="input-text" placeholder="Usename">
+                                    <i class="flaticon-mail-2"></i>
                                 </div>
                                 <div class="form-group form-box">
                                     <input type="password" name="ad_password" class="input-text" placeholder="Password">
                                     <i class="flaticon-password"></i>
                                 </div>
                                 <div class="checkbox clearfix">
-
                                     <a href="forgot-password-7.html">Lupa Kata Laluan</a>
                                 </div>
                                 <div class="form-group mb-0">
@@ -105,15 +97,13 @@
             </div>
         </div>
     </div>
-
-    <!-- Login 7 end -->
+    <!-- Login end -->
 
     <!-- External JS libraries -->
     <script src="assets/js/jquery-2.2.0.min.js"></script>
     <script src="assets/js/popper.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
     <!-- Custom JS Script -->
-
 </body>
 
 </html>

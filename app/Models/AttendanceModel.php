@@ -83,30 +83,71 @@ class AttendanceModel extends Model
 
 public function getAttendanceDataAdmin($ic_number)
 {
-    $this->db->select('a.ic_number, MIN(a.clock_in) as clock_in, MAX(a.clock_out) as clock_out');
+    $this->db->select('a.ic_number, s.stu_name, MIN(a.clock_in) as clock_in, MAX(a.clock_out) as clock_out');
     $this->db->from('attendance a');
     $this->db->join('student s', 'a.ic_number = s.ic_number', 'inner');
-    $this->db->where('a.ic_number = ', $ic_number);
-    $this->db->group_by('a.ic_number');
+    $this->db->where('a.ic_number', $ic_number);
+    $this->db->group_by('a.ic_number, s.stu_name'); 
     $query = $this->db->get();
-    echo $this->db->last_query(); // print the SQL query
-    die(); // stop execution here
+    
+    // Debugging: print the SQL query and result
+    echo '<pre>'; 
+    echo 'SQL Query: ' . $this->db->last_query() . "\n";
+    print_r($query->result_array()); 
+    echo '</pre>';
+    
     return $query->result_array();
 }
 
+
+
+
 public function findAllGroupedByICNumber()
     {
-        $this->select('ic_number, MIN(clock_in) as clock_in, MAX(clock_out) as clock_out');
-        $this->groupBy('ic_number');
+        // Join with the student table to get stu_name
+        $this->select('attendance.ic_number, student.stu_name, MIN(attendance.clock_in) as clock_in, MAX(attendance.clock_out) as clock_out')
+             ->join('student', 'student.ic_number = attendance.ic_number')
+             ->groupBy('attendance.ic_number, student.stu_name');
         return $this->findAll();
     }
 
     public function PrintAllGroupedByICNumber()
     {
-        return $this->select('ic_number, date, clock_in, clock_out')
-                    ->orderBy('ic_number')
-                    ->findAll();
+        $builder = $this->db->table('attendance');
+        $builder->select('student.stu_name as stu_name, attendance.ic_number, attendance.date, attendance.clock_in, attendance.clock_out');
+        $builder->join('student', 'student.ic_number = attendance.ic_number');
+        $builder->orderBy('attendance.ic_number');
+    
+        $data = $builder->get()->getResultArray();
+        echo '<pre>'; print_r($data); echo '</pre>'; // Check the structure of the data
+        return $data;
     }
+    
+
+
+
+
+    public function searchICNumber($search)
+{
+    $builder = $this->db->table('attendance');
+    $builder->select('attendance.ic_number, MIN(attendance.clock_in) as clock_in, MAX(attendance.clock_out) as clock_out, student.stu_name');
+    $builder->join('student', 'student.ic_number = attendance.ic_number');
+    $builder->like('attendance.ic_number', $search);
+    $builder->groupBy('attendance.ic_number');
+
+    $query = $builder->get();
+    $results = $query->getResultArray();
+
+    return $results;
+}
+
+
+public function getAttendanceByICNumber($ic_number)
+    {
+        return $this->where('ic_number', $ic_number)->findAll();
+    }
+
+    
 
     
 }
